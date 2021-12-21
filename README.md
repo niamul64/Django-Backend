@@ -1,24 +1,24 @@
-### Django-Backend
+## Django-Backend
 ### What is django application:
 Django Project is a collection of applications and configurations. Combining all applications will make our complete django website.
 <br>
 An application is created to perform a particular task like 1. registration, 2.posting blog, 3.comment etc.
 <br>
 
-#### step1: Creating Django project (django-admin startproject [Name])
+### step1: Creating Django project (django-admin startproject [Name])
 1. Create project folder and Create python env into it.(by pyhcharm-> easy). check python version from terminal($ python).
 2. Install django.
 $ pip install django==2.2
 3. Create django project 'Practice_Project'
 $ django-admin startproject Practice_Project
 
-#### step2: Running the server (python manage.py runserver)
+### step2: Running the server (python manage.py runserver)
 1. Change directory to django project folder to run manage.py (for running the local server on port 8000). 
 $ python manage.py runserver
 2. Now if we want to change the port for running the server(lets say we want to run on port 7000)
 $ python manage.py runserver 7000
 
-#### step3: Create APP (python manage.py startapp [App_name])
+### step3: Create APP (python manage.py startapp [App_name])
 1. After Creating a django application, we allways have a main app.
 2. Now, we can create other apps to perform a Particular task like 1. registration, 2.posting blog, 3.comment etc.
 3. Create app 'first_app'.
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-#### step4: urls.py and views.py (url mapping is good practice)
+### step4: urls.py and views.py (url mapping is good practice)
 ##### always use this demo files for views and urls
 
 ```
@@ -106,7 +106,7 @@ urlpatterns = [
 ]
 ```
 
-#### step5: templates setup (show HTML files)
+### step5: templates setup (show HTML files)
 1. Create a folder inside the main django project folder. 'templates'
 2. For best practice: inside the templates folder, we create a directory for each App.
 3. Now, goto settings.py and TEMPLATES-> 'DIRS': ["templates"] <br>
@@ -138,7 +138,7 @@ by extending the base ({% extends 'base.html' %})
 ```
 return render(request, 'path/fileName.html',{'objName1':ob1,'objName2':obj2,.......}) # path starts inside templates folder
 ```
-#### step6: static files in HTML files
+### step6: static files in HTML files
 
 1. Create a folder for static files, inside the main django project folder. 'static'
 2. For best practice: make different different folder for differnt types of files inside the static folder.
@@ -174,7 +174,7 @@ STATICFILES_DIRS= [
 </html>
 ```
 
-#### step7: css, js or javaScript files in static files(see step 6 for static file setp-up)
+### step7: css, js or javaScript files in static files(see step 6 for static file setp-up)
 
 1. Create a folder in static folder. 'css'
 2. For best practice we should make folder for global css files and local css files(global-> used by all html files, local for each files)
@@ -186,3 +186,74 @@ STATICFILES_DIRS= [
 
 ```
 5. In same way we can add JS files.
+
+### step8: Built in models, Django Models, sqlLite3. Built in database.(This is not recommended for production level work)
+1. We need django-models to work with db.sqlite3. SQL-Lite3 is a build in databsase with django.
+2. In every app we have models.py file.
+3. 'from django.db import models' this library should already been included in models. And this library contains all the classes and functions we need.
+
+```
+from django.db import models
+from django.utils import timezone
+
+class Musician(models.Model):
+    id = models.AutoField(Primary_key=True)  # But we dont need this id field. its genarated by django automaticaly.
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+    def __str__(self): #function to_string
+        return self.first_name+" "+ self.last_name
+
+class Album(models.Model):
+
+    artist = models.ForeignKey(Musician, on_delete= models.CASCADE) # By using on on_delete: if Musician object deleted then coresponding album obj will also deleted
+    name= models.CharField(max_length=100)
+    release_date = models.DateField()
+    num_stars =models.IntegerField()
+
+    def __str__(self): #function to_string
+        return self.name
+```
+4. Now we need to migrate the models. (allways run these 3 commands, when ever we change in models.py)
+$ python manage.py migrate
+$ python manage.py makemigrations [app_name: in which app we need to add models changes, if we do not give the app name, then it will do makemigrations to whole project ]
+$ python manage.py migrate
+$
+5. Now, we have succesfully created database in sql-lite3.
+6. Now, we can insert data from shell( step9), other wise we can insert data from admin panel: by creating superuser ( step10)
+
+### step9: insert data in database from shell
+1. from terminal use shell
+$ python manage.py shell
+$ # shell will open
+```
+# import models: (lets say our app name 'first_app' : with two models: 1.Musician 2. Album)
+>>> from first_app import Musician, Album
+
+#Now we can print the model all obj to see, is there any object in the model:
+>>> print(Musician.objects.all) 
+
+# Now to entry data, 
+>>> obj =  Musician(first_name="Eric",last_name="H")
+>>> obj.save()
+# Now  if we print the values:
+>>> print(Musician.objects.all) 
+# we will see a obj
+```
+### ste10: insert data in database from admin panel 
+1. Create a superuser:
+$ python manage.py createsuperuser
+$
+2. goto admin.py file of the same App where the models are located.
+```
+# in admin.py file: (# import models: (lets say our app name 'first_app' : with two models: 1.Musician 2. Album))
+
+from .models import Musician, Album
+
+admin.site.register(Musician)
+admin.site.register(Album)
+```
+3. Now run the server
+$ python manage.py runserver
+$
+4. open admin panel and login as superuser. we will see the model where we can insert data.
