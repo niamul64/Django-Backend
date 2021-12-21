@@ -105,3 +105,84 @@ urlpatterns = [
     path('admin/', admin.site.urls), # admin path(default)
 ]
 ```
+
+#### step5: templates setup (show HTML files)
+1. Create a folder inside the main django project folder. 'templates'
+2. For best practice: inside the templates folder, we create a directory for each App.
+3. Now, goto settings.py and TEMPLATES-> 'DIRS': ["templates"] <br>
+BUT this is not good practice. it is like a hard coded path.
+
+```
+# good practice: goto settings.py and make a path for 'templates' folder (not hard coded)
+TEMPLATES_DIR = os.path.join(BASE_DIR,'templates') ## here we will get the actual path for templates folder.
+# now add the path to TEMPLATES-> 'DIRS': ["TEMPLATES_DIR"]
+```
+
+4. Now keep all HTML file in this templates folder. (use blocks in the html files)
+5. Make a base HTML file and there declare many blocks, for other files. use those blocks.
+by extending the base ({% extends 'base.html' %})
+```
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+
+<link rel="stylesheet" href="{% static 'css/cssCode.css' %}"> <!-- css files links should be like this -->
+  
+  </head>
+{% block block_name %}
+.................
+{% endblock%}
+```
+6. To render html file from views.
+```
+return render(request, 'path/fileName.html',{'objName1':ob1,'objName2':obj2,.......}) # path starts inside templates folder
+```
+#### step6: static files in HTML files
+
+1. Create a folder for static files, inside the main django project folder. 'static'
+2. For best practice: make different different folder for differnt types of files inside the static folder.
+3. Now connect the static file with the project: Goto settings.py ->
+4. find the variable path of static file. and add under the 'STATIC_URL' :
+```
+# inside settings.py file
+STATIC_DIR = os.path.join(BASE_DIR, 'static') # path of static folder
+STATIC_URL = '/static/' # keep as it is. 
+STATICFILES_DIRS= [
+    STATIC_DIR, ## adding path 
+]
+
+```
+5. Now to show the image from static/image folder, at .html file:
+```
+<!DOCTYPE html>
+
+{% load static %}                                       <!-- Must include this tag -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+
+<body>
+<h1>index page</h1>
+
+<img src="{% static 'images/Capture.JPG' %}">            <!-- showing image -->
+
+</body>
+</html>
+```
+
+#### step7: css, js or javaScript files in static files(see step 6 for static file setp-up)
+
+1. Create a folder in static folder. 'css'
+2. For best practice we should make folder for global css files and local css files(global-> used by all html files, local for each files)
+3. Create a file for css code. 'cssCode.css' . add css code in this file.
+4. Now, we need to use this css file for our index.html file. In the HTML file, inside the <head> tag:
+```
+# In the HTML file, inside the <head> tag
+<link rel="stylesheet" href="{% static 'css/cssCode.css' %}">
+
+```
+5. In same way we can add JS files.
