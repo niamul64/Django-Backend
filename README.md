@@ -21,21 +21,24 @@ $ python manage.py runserver 7000
 #### step3: Create APP (python manage.py startapp [App_name])
 1. After Creating a django application, we allways have a main app.
 2. Now, we can create other apps to perform a Particular task like 1. registration, 2.posting blog, 3.comment etc.
-3. Create app 'first_app'
-$ python manage.py startapp first_app
+3. Create app 'first_app'.
+$ python manage.py startapp first_app 
+$
 4. New app will be created beside the main app. And we need to connect that new app with project main app.
 5. goto main app settings.py
 6. And add a new instance in the 'NSTALLED_APPS' , the app name.
+
 ```
 <settings.py folder>
 INSTALLED_APPS = [
-      .................         ,
+      .................    ,
     'first_app',
 ]
 ```
 
 #### step4: urls.py and views.py (url mapping is good practice)
 ##### always use this demo files for views and urls
+
 ```
 # for urls.py:
 
