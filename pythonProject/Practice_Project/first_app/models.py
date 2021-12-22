@@ -14,6 +14,16 @@ class Album(models.Model):
     artist = models.ForeignKey(Musician, on_delete= models.CASCADE) # By using on on_delete: if Musician object deleted then coresponding album obj will also deleted
     name= models.CharField(max_length=100)
     release_date = models.DateField()
-    num_stars =models.IntegerField()
+    choice = (
+        (None, 'rating'),
+        (1, 'worst'),
+        (2, 'bad'),
+        (3, 'not good'),
+        (4, 'good'),
+        (5, 'excellent'),
+    )
+    num_stars =models.IntegerField(choices=choice)
     def __str__(self): #function to_string
-        return self.name
+
+        value,char= self.choice [self.num_stars]
+        return self.name+ " "+ char

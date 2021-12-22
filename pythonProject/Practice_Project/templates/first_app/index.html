@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 {% load static %}
+{% load my_filters %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Mucician List</title>
     <link rel="stylesheet" href="{% static 'css/cssCode.css' %}">
 </head>
 <body>
-<h1>index page</h1>
+<h1>Mucical</h1>
+<a href="{% url 'form' %}"><button> ADD </button></a>
 
 <img src="{% static 'images/Capture.JPG' %}">
+{% for obj in mu_obj %}
+<h1>{{obj.first_name| custom_filter:" abc"}}</h1>
+{{obj.last_name}}
+{% endfor %}
+
 </body>
 </html>
