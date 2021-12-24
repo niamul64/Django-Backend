@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +23,7 @@
           <a class="nav-link active" aria-current="page" href="{% url 'Login_app:index' %}">Home</a>
         </li>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">Album Form</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'Login_app:register' %}">Register</a>
         </li>
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="">Musician Form</a>
@@ -35,6 +36,6 @@
 </nav>
 <!--NavBar End-->
 
-<div class="container"> {% block body %} {% endblock %} </div>
+<div class="container" style="padding-top:20px;"> {% block body %} {% endblock %} </div>
 </body>
 </html>
