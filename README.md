@@ -201,6 +201,10 @@ class Musician(models.Model): # models have some other usefull parameters (see s
     id = models.AutoField(Primary_key=True)  # But we dont need this id field. its genarated by django automaticaly.
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    
+    # when using MySql
+    # class Meta: # by this , we can say to make the table with exactly this give name(force)
+    #     db_table = "Musician" # table will be created by this name exactly.
 
     def __str__(self): #function to_string
         return self.first_name+" "+ self.last_name
@@ -297,6 +301,14 @@ img1 = models.ImageField(upload_to='images/post', default='demo.png',blank=True)
         (5, 'excellent'),
     )
     num_stars =models.IntegerField(choices=choice)
+    
+    def __str__(self): #function to_string
+        value,char= self.choice [self.num_stars]
+        return self.name+ " "+ char
+    
+    def getRating(self): # Get the actuall String value from choices list
+        value, char = self.choice[self.num_stars]
+        return char
 ```
 ### ste12: Import models at views and values show to user through HTML page
 #### ltes say we have two models in a App. APP name='first_app' , models= 'Musician', 'Album'
@@ -650,3 +662,6 @@ def my_filter(value, filter_parameter):   # this is custom filter. here 'value' 
 # now register the function as filter
 register.filter("custom_filter", my_filter) # now if we call "custom_filter" then 'my_filter' function will work
 ``` 
+
+### step23: coonect Mysql database: see the video in this reposetory, name: connecting MySql Database.
+---> from here see the folder 'WITH MySql Database'

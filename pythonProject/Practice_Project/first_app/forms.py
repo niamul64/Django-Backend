@@ -1,11 +1,27 @@
 from django import forms
 from django.core import validators
-from first_app.models import Musician
+from first_app.models import Musician, Album
 
+
+
+# for crud with mysql
 class MusicianForm(forms.ModelForm):
     class Meta:
         model= Musician
         fields = "__all__"  #    For all fields
+class AlbumForm(forms.ModelForm):
+    # Now over write the release_date field from 'Album' table
+
+    release_date= forms.DateField(widget= forms.TextInput(attrs={'type':'date',})) # it will bring a callender in frontend
+    class Meta:
+        model= Album
+        fields = "__all__"  #    For all fields
+
+# for crud with mysql (end)
+
+
+
+
 
 
 def even_number_check(value):

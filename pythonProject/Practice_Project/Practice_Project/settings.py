@@ -78,11 +78,14 @@ WSGI_APPLICATION = 'Practice_Project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django', # database name
+        'USER': 'root', # As local host, it is root. if we use any server then there will be a password
+        'PASSWORD': '', # local host has no pass word
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

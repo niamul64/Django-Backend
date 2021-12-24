@@ -1,0 +1,33 @@
+{% extends 'first_app/base.html' %}
+
+{% block head %} {% endblock %}
+
+{% block body %}
+<h3>Album List:</h3>
+<ul>
+      {% if album %}
+      <li>
+            Name of artist: {{artist.first_name}} <span> </span> {{artist.last_name}}
+      </li>
+      <hr>
+            {% for obj in album %}
+      <li>
+            Music Name: {{obj.name}}
+      </li>
+      <li>
+            Relese Date: <span> </span> {{obj.release_date|date:"M d, Y" }} <!--with time date formate weidget-->
+      </li>
+      <li>
+            Ratings: <span> </span> {{obj.num_stars}}
+      </li>
+
+      <a href="{% url 'edit_album' obj.id %}" class="btn btn-warning btn-sm">Edit</a>
+      <!-- sending id of a album, to edit_album url, Now we need to receive the is form that url -->
+
+      <hr>
+      <br>
+      {% endfor %}
+      {% endif %}
+</ul>
+
+{% endblock %}

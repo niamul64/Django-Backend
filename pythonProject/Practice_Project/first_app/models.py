@@ -27,3 +27,6 @@ class Album(models.Model):
 
         value,char= self.choice [self.num_stars]
         return self.name+ " "+ char
+    def getRating(self):
+        value, char = self.choice[self.num_stars]
+        return char
