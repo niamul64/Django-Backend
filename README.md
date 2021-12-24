@@ -245,7 +245,7 @@ $ # shell will open
 >>> print(Musician.objects.all) 
 # we will see a obj
 ```
-### ste10: insert data in database from admin panel 
+### ste10: insert data in database from admin panel, register model in admin.py
 1. Create a superuser:
 $ python manage.py createsuperuser
 $
@@ -274,7 +274,8 @@ columnName = models.CharField(max_length=120, default="" , null=False , blank= F
 columnName = models.CharField(max_length=120 null=True , blank= True) 
 
 Example For img field:
-img1 = models.ImageField(upload_to='images/post', default='demo.png',blank=True)
+img1= models.ImageField(upload_to='images/post',default='demo.png',blank=True) #img1 will be uploaded to 'media/images/post' folder
+# to set media folder in django project: see 'media folder add to keep iser input file or image.md' folder
 ```
 
 3. choices, Structure--> ('value for database', "value will show to user")
@@ -370,7 +371,7 @@ def index(request):
       obj.first_name=f_n
       obj.save()
 ```
-6. If we have image file: views.py--> function
+6. If we have image file: views.py--> function (see 'media folder add to keep user input files or image.md' file)
 ```
   obj = Mucician()  # create a object of database table
   if request.FILES.get('image'):
@@ -665,3 +666,5 @@ register.filter("custom_filter", my_filter) # now if we call "custom_filter" the
 
 ### step23: coonect Mysql database: see the video in this reposetory, name: connecting MySql Database.
 ---> from here see the folder 'WITH MySql Database'
+
+### step24: ### image add ### media folder (see the 'media folder add to keep user input files or images.md' folder)

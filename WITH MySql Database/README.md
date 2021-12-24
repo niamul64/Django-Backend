@@ -1,3 +1,4 @@
+## for this ReadMe: used PythonProject of this reposetory
 ## connect MySql database. coonect Mysql database: see the video in this reposetory, name: connecting MySql Database.
 Now we need to migrate the models. (allways run these 3 commands, when ever we change in models.py)
 $ python manage.py migrate

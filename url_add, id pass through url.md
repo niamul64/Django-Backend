@@ -66,3 +66,28 @@ def album_list(req, artist_id):                              # by artist_id vari
       {% endif %}
 </ul>
 ```
+
+
+# relative URL: (good Practice)
+
+### inside the app's (not main app): urls.py
+```
+from django.conf.urls import url
+from django.urls import path
+from . import views
+
+app_name='Login_app'                     ###### for using relative URL insidt the HTML file:
+
+urlpatterns = [
+  path('', views.index, name='index'),
+]
+
+```
+### Now, we can use ralative app Url: By mentioning the App_name:url_name: inside the HTML file
+```
+href="{% url 'Login_app:index' %}"
+
+<!-- to sent a obj id with it: -->
+href="{% url 'Login_app:index' obj.id %}"
+```
+
