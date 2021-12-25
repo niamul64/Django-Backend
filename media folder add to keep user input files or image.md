@@ -30,6 +30,11 @@ from django.conf.urls.static import static, staticfiles_urlpatterns
 urlpatterns = [
       path....
 ]+static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)   ## very important
+
+# or  we can use:
+#urlspatterns += staticfiles_urlpatterns()
+#urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
 ```
 
 ### 5. Now in html file (very important [enctype="multipart/form-data"], [method="POST"] and [{% csrf_token %}])
