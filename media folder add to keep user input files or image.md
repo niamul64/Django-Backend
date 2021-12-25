@@ -17,10 +17,11 @@ profile_pic= models.ImageField(upload_to='profile_pics', blank=True) # profile p
 
 ### 3. Goto settings.py: (bottom of the settings.py)
 ```
+# inside settings.py file. But this have changed for django 3 or above(see: 'initial setup for project,md file')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
-
+# inside settings.py file. But this have changed for django 3 or above(see: 'initial setup for project,md file')
 ```
 ### 4. add media url to urls.py (must inport: settings, static, staticfiles_urlpatterns)
 ```

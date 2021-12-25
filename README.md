@@ -145,13 +145,13 @@ return render(request, 'path/fileName.html',{'objName1':ob1,'objName2':obj2,....
 3. Now connect the static file with the project: Goto settings.py ->
 4. find the variable path of static file. and add under the 'STATIC_URL' :
 ```
-# inside settings.py file
+# inside settings.py file. But, this have changed for django 3 or above(see: 'initial setup for project,md file')
 STATIC_DIR = os.path.join(BASE_DIR, 'static') # path of static folder
 STATIC_URL = '/static/' # keep as it is. 
 STATICFILES_DIRS= [
     STATIC_DIR, ## adding path 
 ]
-
+# inside settings.py file. But, this have changed for django 3 or above(see: 'initial setup for project,md file')
 ```
 5. Now to show the image from static/image folder, at .html file:
 ```
@@ -263,7 +263,7 @@ $ python manage.py runserver
 $
 4. open admin panel and login as superuser. we will see the model where we can insert data.
 
-### ste11: models have some other usefull parameters
+### step11: models have some other usefull parameters
 #### by default all parameter value is false, but we can set those to true.
 1. NULL, by default-> null= false, means value can not be null. But we can set it to True-> can set to be null.
 2. BLANK, by default-> null= false, means value can not be blank. If you only set blank=True, then we can keep that fill blank

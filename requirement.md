@@ -7,3 +7,6 @@ $ pip freeze > requirement.txt
 ## to install all the dependecies from requirements.txt
 $ pip install -r requirement.txt 
 $
+
+## to uninstall all the dependecies from requirements.txt
+$$  pip uninstall -r requirements.txt -y
