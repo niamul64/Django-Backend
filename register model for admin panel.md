@@ -9,3 +9,7 @@ from .models import Musician, Album
 
 admin.site.register(Musician)
 admin.site.register(Album)
+```
+
+
+# We also can use serialization or serializer in admin panel, to see mor info from admin panel (see: serializer.md)

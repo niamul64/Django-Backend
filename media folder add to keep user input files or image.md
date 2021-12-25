@@ -72,3 +72,4 @@ urlpatterns = [
 <!-- in HTML: -->
 <input type="file" name="image" />
 ```
+

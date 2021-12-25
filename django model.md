@@ -15,11 +15,11 @@ from django.contrib.auth.models import User # importing the User model for using
 ```
 
 
-### 1. Built in models, Django Models, sqlLite3. Built in database.(This is not recommended for production level work)
-1. We need django-models to work with db.sqlite3. SQL-Lite3 is a build in databsase with django.
-2. In every app we have models.py file.
-3. 'from django.db import models' this library should already been included in models. And this library contains all the classes and functions we need.
-4. models have some other usefull parameters 
+### Built in models, Django Models, sqlLite3. Built in database.(This is not recommended for production level work)
+### 1. We need django-models to work with db.sqlite3. SQL-Lite3 is a build in databsase with django.
+### 2. In every app we have models.py file.
+### 3. 'from django.db import models' this library should already been included in models. And this library contains all the classes and functions we need.
+#### models have some other usefull parameters 
 
 ```
 class Musician(models.Model): # models have some other usefull parameters (see step11 )
@@ -47,17 +47,17 @@ class Album(models.Model):
         return self.name
 ```
 
-4. Now we need to migrate the models. (allways run these 3 commands, when ever we change in models.py)
+### 4. Now we need to migrate the models. (allways run these 3 commands, when ever we change in models.py)
  python manage.py migrate
  python manage.py makemigrations [app_name: in which app we need to add models changes, if we do not give the app name, then it will do makemigrations to whole project ]
  python manage.py migrate
 
-5. Now, we have succesfully created database in sql-lite3.
+### 5. Now, we have succesfully created database in sql-lite3.
 
-7. models have some other usefull parameters
-8. by default all parameter value is false, but we can set those to true.
-9. NULL, by default-> null= false, means value can not be null. But we can set it to True-> can set to be null.
-10. BLANK, by default-> null= false, means value can not be blank. If you only set blank=True, then we can keep that fill blank
+### 7. models have some other usefull parameters
+### 8. by default all parameter value is false, but we can set those to true.
+### 9. NULL, by default-> null= false, means value can not be null. But we can set it to True-> can set to be null.
+### 10. BLANK, by default-> null= false, means value can not be blank. If you only set blank=True, then we can keep that fill blank
 
 
 ```
@@ -65,13 +65,9 @@ class Album(models.Model):
 columnName = models.CharField(max_length=120, default="" , null=False , blank= False)
 ## but we can:
 columnName = models.CharField(max_length=120 null=True , blank= True) 
-
-Example For img field:
-img1= models.ImageField(upload_to='images/post',default='demo.png',blank=True) #img1 will be uploaded to 'media/images/post' folder
-# to set media folder in django project: see 'media folder add to keep iser input file or image.md' folder
 ```
 
-11. choices, Structure--> ('value for database', "value will show to user")
+### 11. choices, Structure--> ('value for database', "value will show to user")
 ```
 # we need to use tulpes data structure to keep the choices:
 # example 1:(for charecter value)
@@ -105,7 +101,7 @@ img1= models.ImageField(upload_to='images/post',default='demo.png',blank=True) #
         return char
 ```
 
-12. User Auth model: 
+### 12. User Auth model: 
 
 ```
 from django.conf import settings
@@ -123,4 +119,68 @@ class UserInfo(models.Model): #one to one relation                              
 ```
 
 
-13. image field:
+### 13. Image field: have to install pillow
+```
+img1= models.ImageField(upload_to='images/post',default='demo.png',blank=True, null=True)     #img1 will be uploaded to 'media/images/post' folder
+
+# to set media folder in django project: see 'media folder add to keep input file or image.md' folder
+```
+### or by using method or function (create sub folder for each user and keep image of that user in that sub-folder)
+```
+# instance will grab the model object(will use the user), filename will grab the picture file name. We are creating a folder for each user to keep that user pic in separate folder. 
+## good approch:
+def upload_status_image(instance, filename): 
+      return "uploads/{user}/{filename}".format(user=instance.user, filename=filename)
+
+class Status(models.Model):
+      image = models.ImageField(upload_to=upload_status_image, null=True, blank=True)
+      # when pic will be uploaded the 'upload_status_image' function will called by passing two values.
+```
+
+### 14. date time auto track
+```
+  Updated = models.DateTimeField(auto_now= True)    # every time updated
+  Created = models.DateTimeField(auto_now_add= True)# one time 
+```
+
+### 15. method to slice the big string to small
+```
+# will return 30 charecter of a feild
+    return str(self.content)[0:30]
+```
+
+### 16. register model in admin panel 
+goto admin.py file of the same App where the models are located.
+```
+# in admin.py file: (# import models: (lets say our app name 'first_app' : with two models: 1.Musician 2. Album))
+
+from .models import Musician, Album
+# or we can import like this: from first_app.models import Musician, Album
+
+admin.site.register(Musician)
+admin.site.register(Album)
+```
+#### (optional) create serialization on admin panel( see: 'serializer.md')
+
+### 17. run commands:
+```
+$ py manage.py makemigrations
+$ py manage.py migrate
+$ py manage.py makemigrations
+$ manage.py migrate
+$ py manage.py createsuperuser
+```
+
+### To show different name of table from dmin panel or Mysql workbnch:
+```
+    # when using sql_lite3:
+      class Meta:
+            verbose_name_plural = "Status List" 
+            # in admin panel, table name will show by this name
+
+    # when using MySql
+
+    # class Meta: # by this , we can say to make the table with exactly this give name(force)
+    #     db_table = "Musician" # table will be created by this name exactly.
+```
+### we can use 'verbose' in fields to change the name when showing to user.
