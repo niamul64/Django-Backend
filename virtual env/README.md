@@ -10,4 +10,4 @@ $ python -m venv env_name
 $ pipenv\Scripts\activate
 $
 Example:
-<img src="img.jpg" alt="alt" width="100%">
+<img src="img.JPG" alt="alt" width="100%">
