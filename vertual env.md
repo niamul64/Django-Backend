@@ -15,7 +15,7 @@ $
 $ pipenv\Scripts\activate
 $
 Example:
-<img src="img.JPG" alt="alt" width="100%">
+<img src="vertual env.JPG" alt="alt" width="100%">
 
 ### we can deactivate the virtual env by"
 $ pipenv\Scripts\deactivate
