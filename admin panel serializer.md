@@ -12,6 +12,6 @@ class StatusAdmin(admin.ModelAdmin):
 
 admin.site.register(Status, StatusAdmin)       # registering
 ```
-<img src="srializer before.JPG" alt="alt" width="46%">
+<img src="srializer before.JPG" alt="alt" width="100%">
 
-<img src="srializer after.JPG" alt="alt" width="46%">
+<img src="srializer after.JPG" alt="alt" width="100%">

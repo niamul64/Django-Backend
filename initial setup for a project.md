@@ -53,4 +53,4 @@ LOGIN_REDIRECT_URL = " "  ## in Loing error auto take url
 ### 9. Create database model classes,  see: 'django model.md'.
 ### 10. register models in admin panel: (run migrate, makemigrations--> before this)
 ### 11. createsuperuser (py manage.py createsuperuser)
-### 12. create serialization on admin panel( see: 'serializer.md')  (optional)
+### 12. create admin panel serialization on admin panel( see: 'admin panel serializer.md')  (optional)

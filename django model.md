@@ -160,7 +160,7 @@ from .models import Musician, Album
 admin.site.register(Musician)
 admin.site.register(Album)
 ```
-#### (optional) create serialization on admin panel( see: 'serializer.md')
+#### (optional) create admin panel serialization on admin panel( see: 'admin panel serializer.md')
 
 ### 17. run commands:
 ```
