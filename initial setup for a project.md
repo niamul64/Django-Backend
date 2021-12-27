@@ -54,3 +54,7 @@ LOGIN_REDIRECT_URL = " "  ## in Loing error auto take url
 ### 10. register models in admin panel: (run migrate, makemigrations--> before this)
 ### 11. createsuperuser (py manage.py createsuperuser)
 ### 12. create admin panel serialization on admin panel( see: 'admin panel serializer.md')  (optional)
+
+<hr>
+
+###  REST API serializer--> see 'Django-react-rest_API' reposetory README
